@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiTHOS — Healthograph</title>
+  <style>
+    :root {
+      --navy:#04173f; --navy-2:#071c46; --aqua:#35d6ce;
+      --light:#d6dde8; --text:#0b1630; --muted:#5a6b88; --soft:#f7fafc; --line:#d9e2f2;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:#fff; line-height:1.55; }
+    h1,h2,h3 { margin:0; font-family:Georgia,"Times New Roman",serif; line-height:1.15; }
+    a { text-decoration:none; }
+    .section { padding:64px 20px; }
+    .container { max-width:1040px; margin:0 auto; }
+
+    /* HERO */
+    .hero {
+      background:radial-gradient(circle at 78% 14%, rgba(53,214,206,0.16), transparent 22%),
+                 linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);
+      color:#fff; text-align:center; padding:84px 20px 76px;
+    }
+    .hero-logo { width:min(320px,78vw); margin:0 auto 26px; display:block; border-radius:16px; }
+    .eyebrow { color:rgba(53,214,206,0.9); font-size:12px; letter-spacing:0.28em; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
+    .hero h1 { font-size:clamp(40px,6.5vw,64px); color:#fff; }
+    .hero-subhead { margin:16px auto 0; color:var(--aqua); font-size:clamp(19px,2.6vw,26px); font-style:italic; max-width:760px; }
+    .hero-copy { max-width:720px; margin:20px auto 0; color:var(--light); font-size:17px; }
+    .cta-row { margin-top:32px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .btn { display:inline-block; border:none; cursor:pointer; border-radius:16px; padding:14px 26px; font-weight:700; font-size:15px; transition:transform .18s ease; }
+    .btn:hover { transform:translateY(-1px); }
+    .btn-primary { background:var(--aqua); color:var(--navy); box-shadow:0 10px 30px rgba(53,214,206,0.18); }
+    .btn-secondary { border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); color:#fff; }
+
+    /* HOW IT WORKS */
+    .how { background:var(--soft); }
+    .section-title { text-align:center; font-size:clamp(28px,3.6vw,40px); color:var(--navy); }
+    .section-intro { text-align:center; max-width:680px; margin:12px auto 0; color:var(--muted); font-size:17px; }
+    .steps-grid { margin-top:32px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .step-card { background:#fff; border:1px solid var(--line); border-radius:24px; padding:24px 20px; box-shadow:0 8px 24px rgba(4,23,63,0.05); }
+    .step-number { font-size:12px; letter-spacing:0.26em; font-weight:800; color:var(--aqua); text-transform:uppercase; }
+    .step-card h3 { margin-top:12px; font-size:19px; color:var(--navy); }
+    .step-card p { margin:10px 0 0; color:var(--muted); font-size:14.5px; }
+
+    /* CONCIERGE */
+    .concierge { background:#fff; }
+    .concierge-card {
+      margin-top:32px; display:grid; grid-template-columns:170px 1fr; gap:30px; align-items:center;
+      background:var(--soft); border:1px solid var(--line); border-radius:28px; padding:32px;
+      box-shadow:0 8px 24px rgba(4,23,63,0.05);
+    }
+    .concierge-card img { width:170px; height:170px; border-radius:24px; object-fit:cover; }
+    .concierge-card h3 { font-size:24px; color:var(--navy); }
+    .concierge-role { color:var(--aqua); font-weight:700; margin:6px 0 0; font-size:14px; letter-spacing:0.04em; }
+    .concierge-card p.bio { margin:16px 0 0; color:var(--text); font-size:16px; }
+
+    /* PARTNERS */
+    .partners { background:var(--soft); text-align:center; }
+    .partners .eyebrow { color:var(--muted); }
+    .logo-row { margin-top:24px; display:flex; align-items:center; justify-content:center; gap:48px; flex-wrap:wrap; }
+    .logo-aithos { height:78px; background:var(--navy); border-radius:14px; padding:12px 20px; }
+    .logo-ohsu { height:72px; }
+    .partner-note { margin-top:16px; font-size:13px; color:var(--muted); font-style:italic; }
+
+    /* ENROLL */
+    .enroll { background:#fff; }
+    .enroll-card { max-width:640px; margin:30px auto 0; border:1px solid var(--line); border-radius:26px; background:#fff; padding:34px 28px; box-shadow:0 8px 24px rgba(4,23,63,0.05); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+    .field { display:flex; flex-direction:column; text-align:left; }
+    .field.full { grid-column:1 / -1; }
+    .field label { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+    .field input, .field select { border:1px solid var(--line); border-radius:11px; padding:12px 14px; font-size:15px; font-family:inherit; color:var(--text); background:#fff; }
+    .field input:focus, .field select:focus { outline:2px solid var(--aqua); border-color:var(--aqua); }
+    .form-submit { width:100%; margin-top:6px; }
+    .form-fine { margin:14px 0 0; font-size:12px; color:var(--muted); text-align:center; }
+
+    /* DISCLAIMER + FOOTER */
+    .disclaimer { background:var(--soft); border-top:1px solid var(--line); padding:22px 20px; }
+    .disclaimer p { max-width:940px; margin:0 auto; text-align:center; color:var(--muted); font-size:12.5px; line-height:1.6; }
+    .footer { background:var(--navy); color:var(--light); padding:26px 20px; }
+    .footer-inner { max-width:1040px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; font-size:14px; }
+    .footer-links { display:flex; gap:18px; flex-wrap:wrap; }
+    .placeholder { color:#b23b1e; font-weight:700; }
+
+    @media (max-width:900px){ .steps-grid{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:640px){
+      .steps-grid{ grid-template-columns:1fr; }
+      .form-row{ grid-template-columns:1fr; }
+      .section{ padding:52px 18px; }
+      .logo-row{ gap:28px; }
+      .concierge-card{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <img src="Aithos_Logo.png" alt="AiTHOS Sovereign Health" class="hero-logo" />
+      <div class="eyebrow">AiTHOS · Sovereign Health</div>
+      <h1>Build your Healthograph</h1>
+      <div class="hero-subhead">Your personal health signature — all in one place.</div>
+      <p class="hero-copy">
+        A complex diagnosis can feel overwhelming. AiTHOS brings your records, results,
+        and notes together into one clear health story — so you know where you are in
+        your care, and what comes next.
+      </p>
+      <div class="cta-row">
+        <a href="#enroll" class="btn btn-primary">Request Your Consultation</a>
+        <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-intro">Four simple steps — most of the work is done for you.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">Step 01</div>
+          <h3>Consultation</h3>
+          <p>A conversation to understand your diagnosis and what matters most to you.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">Step 02</div>
+          <h3>Records request</h3>
+          <p>With your permission, we gather your records for you. You stay in control.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">Step 03</div>
+          <h3>Assembly</h3>
+          <p>Scattered records are brought together into one organized place.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">Step 04</div>
+          <h3>Your summary</h3>
+          <p>You receive your Healthograph — a clear summary to bring to appointments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCIERGE -->
+  <section class="section concierge">
+    <div class="container">
+      <h2 class="section-title">Who you'll work with</h2>
+      <p class="section-intro">A real person in your corner — not a chatbot, not a call center.</p>
+      <div class="concierge-card">
+        <img src="chandler.jpg" alt="Chandler Schwede" />
+        <div>
+          <h3>Chandler Schwede</h3>
+          <p class="concierge-role">Patient Care Concierge</p>
+          <p class="bio">
+            Chandler guides you through every step — from your first conversation to your
+            finished Healthograph — so you always have a person to turn to with questions.
+            <span class="placeholder">[Add a sentence on Chandler's background/credentials.]</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS / LOGOS -->
+  <section class="section partners">
+    <div class="container">
+      <div class="eyebrow">In collaboration with</div>
+      <div class="logo-row">
+        <img class="logo-aithos" src="Aithos_Logo.png" alt="AiTHOS Sovereign Health" />
+        <!-- OHSU LOGO: display only if OHSU has authorized logo use on this page. If not yet confirmed, delete this <img>. -->
+        <img class="logo-ohsu" src="OHSU_Logo.png" alt="OHSU" />
+      </div>
+      <p class="partner-note">
+        <span class="placeholder">[Display the OHSU logo only with their written authorization. Remove if the partnership is not yet confirmed.]</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ENROLL -->
+  <section class="section enroll" id="enroll">
+    <div class="container">
+      <h2 class="section-title">Request your consultation</h2>
+      <p class="section-intro">Tell us a little about you and we'll be in touch. No obligation.</p>
+      <!-- Replace YOUR_FORM_ID with your Formspree endpoint (free at formspree.io) -->
+      <form class="enroll-card" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="(___) ___-____" />
+          </div>
+          <div class="field">
+            <label for="condition">Reason for reaching out</label>
+            <select id="condition" name="condition">
+              <option value="">Please select…</option>
+              <option>Heart failure</option>
+              <option>Oncology / cancer</option>
+              <option>Another complex diagnosis</option>
+              <option>Asking for a family member</option>
+              <option>Just learning more</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Request Consultation</button>
+        <p class="form-fine">
+          By submitting, you agree to be contacted about AiTHOS. We will not share your information.
+          This form does not create a clinical or fiduciary relationship.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="disclaimer">
+    <p>
+      AiTHOS provides informational support to help you organize and understand your health records.
+      It does not provide medical advice, diagnosis, or treatment, and does not replace your physicians
+      or care team. <span class="placeholder">[Counsel to confirm final disclaimer language.]</span>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>AiTHOS · Sovereign Health</div>
+      <div class="footer-links">
+        <a href="#how-it-works" style="color:inherit;">How It Works</a>
+        <a href="#enroll" style="color:inherit;">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
