@@ -43,6 +43,21 @@
     .step-card h3 { margin-top:12px; font-size:19px; color:var(--navy); }
     .step-card p { margin:10px 0 0; color:var(--muted); font-size:14.5px; }
 
+    /* TESTIMONIAL */
+    .testimonial { background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#fff; }
+    .testimonial .container { max-width:880px; text-align:center; }
+    .testimonial .eyebrow { color:rgba(53,214,206,0.9); font-size:12px; letter-spacing:0.28em; text-transform:uppercase; font-weight:700; }
+    .quote-mark { font-family:Georgia,serif; font-size:64px; line-height:0.4; color:var(--aqua); margin-top:18px; height:34px; }
+    .testimonial blockquote { margin:0; font-family:Georgia,serif; font-size:clamp(20px,2.8vw,27px); line-height:1.45; color:#fff; }
+    .testimonial blockquote .hl { color:var(--aqua); font-style:italic; }
+    .testimonial .more { margin:24px auto 0; max-width:760px; color:var(--light); font-size:16px; line-height:1.7; text-align:left; display:none; }
+    .testimonial .more.open { display:block; }
+    .testimonial .more p { margin:0 0 14px; }
+    .testimonial .toggle { margin-top:20px; background:none; border:1px solid rgba(255,255,255,0.25); color:#fff; border-radius:14px; padding:10px 22px; font-size:14px; font-weight:700; cursor:pointer; transition:background .18s ease; }
+    .testimonial .toggle:hover { background:rgba(255,255,255,0.08); }
+    .testimonial .attribution { margin-top:26px; color:var(--light); font-size:15px; }
+    .testimonial .attribution .name { color:#fff; font-weight:700; }
+
     /* CONCIERGE */
     .concierge { background:#fff; }
     .concierge-card {
@@ -97,7 +112,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <img src="Aithos_Logo.png" class="hero-logo" />
+      <img src="Aithos_Logo.png" alt="AiTHOS Sovereign Health" class="hero-logo" />
       <h1>Build your Healthograph</h1>
       <div class="hero-subhead">Your personalized health signature — all in one place.</div>
       <p class="hero-copy">
@@ -140,6 +155,31 @@
     </div>
   </section>
 
+  <!-- TESTIMONIAL -->
+  <section class="section testimonial">
+    <div class="container">
+      <div class="eyebrow">In a patient's words</div>
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>
+        Having a dedicated, <span class="hl">unbiased advocate</span> focused solely on my long-term health could
+        significantly improve both confidence and outcomes. The platform suggested updated imaging closer to my
+        surgery date &mdash; <span class="hl">something I had not considered</span>, and wish I&rsquo;d been able to
+        discuss with my care team.
+      </blockquote>
+
+      <div class="more" id="moreText">
+        <p>Having a trusted health fiduciary would be incredibly valuable in helping to organize and interpret the vast amount of health information generated over time from multiple sources &mdash; medical records, test results, provider conversations, and recommendations &mdash; into a single, clear, and actionable view. This would have been especially helpful when I was seeking second and third opinions during critical points in my care journey.</p>
+        <p>I believe patients would benefit greatly from having an independent and objective advocate helping guide their healthcare decisions. Unlike traditional stakeholders in the healthcare system, a health fiduciary is not influenced by insurance limitations, institutional priorities, or provider biases that may not always align with the patient&rsquo;s best interests.</p>
+        <p>Staying informed about relevant research, clinical trials, emerging treatments, and new diagnostic tools can also lead to more informed decisions. The AiTHOS platform is particularly valuable in identifying critical decision points and helping patients formulate thoughtful, meaningful questions for their providers &mdash; patients often do not know what to ask because they are unfamiliar with the full range of options.</p>
+        <p>In my own experience, I faced an important decision regarding the scope of a surgical procedure. The platform suggested considering updated imaging closer to the surgery date to better inform that decision. It may have influenced the outcome, or at the very least, helped me feel more informed and confident in the decisions I made.</p>
+      </div>
+
+      <button class="toggle" id="toggleBtn" onclick="var m=document.getElementById('moreText');var b=document.getElementById('toggleBtn');m.classList.toggle('open');b.textContent=m.classList.contains('open')?'Show less':'Read the full reflection';">Read the full reflection</button>
+
+      <p class="attribution"><span class="name">&mdash; Patient Principal</span> &middot; <span class="placeholder">
+    </div>
+  </section>
+
   <!-- CONCIERGE -->
   <section class="section concierge">
     <div class="container">
@@ -164,7 +204,7 @@
     <div class="container">
       <div class="eyebrow">In collaboration with</div>
       <div class="logo-row">
-        <img class="logo-aithos" src="Aithos_Logo.png" />
+        <img class="logo-aithos" src="Aithos_Logo.png" alt="AiTHOS Sovereign Health" />
         <img class="logo-ohsu" src="OHSU_Logo.png" alt="OHSU" />
       </div>
     </div>
@@ -218,7 +258,7 @@
     <p>
       AiTHOS provides informational support to help you organize and understand your health records.
       It does not provide medical advice, diagnosis, or treatment, and does not replace your physicians
-      or care team. <span class="placeholder">
+      or care team.
     </p>
   </section>
 
